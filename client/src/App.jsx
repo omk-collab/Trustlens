@@ -39,8 +39,7 @@ import {
 import ProjectCard from "./components/ProjectCard";
 import ProjectDetails from "./components/ProjectDetails";
 
-const API = "http://localhost:8000";
-
+const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 function formatCrore(amount = 0) {
   return `₹${(amount / 10000000).toFixed(2)} Cr`;
 }
