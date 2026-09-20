@@ -1,372 +1,532 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  color: #f5f7fa;
-  background: #080b12;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 75% 10%, rgba(70, 100, 255, 0.12), transparent 30%),
-    radial-gradient(circle at 20% 50%, rgba(0, 220, 180, 0.06), transparent 28%),
-    #080b12;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
+/* =========================================================
+   TRUSTLENS — GLOBAL APP DESIGN
+   ========================================================= */
 
 .app {
   min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
-/* ================= NAVBAR ================= */
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
 .navbar {
-  width: 100%;
-  height: 72px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 11, 18, 0.75);
-  backdrop-filter: blur(14px);
   position: sticky;
   top: 0;
   z-index: 100;
+
+  width: 100%;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: color-mix(
+    in srgb,
+    var(--bg-secondary) 92%,
+    transparent
+  );
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(16px);
 }
 
 .logo {
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 24px;
   font-weight: 800;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
 }
 
 .logo span {
-  color: #6d8cff;
+  color: var(--accent);
 }
 
 .navbar nav {
   display: flex;
+  align-items: center;
   gap: 34px;
 }
 
 .navbar nav a {
-  color: #9ca8bb;
+  color: var(--text-secondary);
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.25s ease;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
 }
 
 .navbar nav a:hover {
-  color: #ffffff;
+  color: var(--accent);
 }
 
 .nav-btn {
-  border: 1px solid rgba(109, 140, 255, 0.5);
-  background: rgba(109, 140, 255, 0.1);
-  color: #ffffff;
-  padding: 9px 18px;
-  border-radius: 8px;
-  transition: 0.25s ease;
+  border: none;
+  border-radius: 10px;
+
+  padding: 11px 20px;
+
+  background: var(--accent);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .nav-btn:hover {
-  background: #6d8cff;
-  border-color: #6d8cff;
+  background: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
-/* ================= HERO ================= */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero-section {
-  max-width: 1200px;
-  min-height: calc(100vh - 72px);
-  margin: auto;
-  padding: 100px 6% 80px;
+  width: min(1200px, 88%);
+  min-height: 650px;
+
+  margin: 0 auto;
+
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
+
   align-items: center;
   gap: 80px;
+
+  padding: 80px 0;
 }
 
 .hero-content {
-  max-width: 650px;
+  max-width: 680px;
 }
 
 .badge {
-  display: inline-block;
-  padding: 7px 13px;
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 14px;
   margin-bottom: 24px;
-  border: 1px solid rgba(109, 140, 255, 0.3);
-  border-radius: 50px;
-  color: #91a7ff;
-  background: rgba(109, 140, 255, 0.08);
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--bg-secondary);
+
+  color: var(--accent);
+
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hero-content h1 {
+  margin: 0;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+
   font-size: clamp(48px, 6vw, 76px);
-  line-height: 0.98;
-  letter-spacing: -4px;
-  margin-bottom: 28px;
+  line-height: 1.05;
+
+  font-weight: 800;
+  letter-spacing: -0.055em;
 }
 
 .hero-content h1 span {
-  background: linear-gradient(90deg, #6d8cff, #65d9c7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 .hero-text {
-  max-width: 590px;
-  color: #8f9bae;
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 34px;
+  max-width: 610px;
+
+  margin: 28px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 18px;
+  line-height: 1.75;
 }
 
 .hero-buttons {
   display: flex;
   gap: 14px;
+
+  margin-top: 34px;
 }
 
 .primary-btn,
 .secondary-btn {
-  padding: 12px 21px;
-  border-radius: 9px;
-  font-weight: 600;
-  transition: 0.25s ease;
+  border-radius: 12px;
+
+  padding: 14px 22px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .primary-btn {
-  border: 1px solid #6d8cff;
-  background: #6d8cff;
+  border: 1px solid var(--accent);
+
+  background: var(--accent);
   color: white;
 }
 
 .primary-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(109, 140, 255, 0.25);
+  box-shadow: 0 10px 30px rgb(37 99 235 / 20%);
 }
 
 .secondary-btn {
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(255, 255, 255, 0.04);
-  color: #dbe1ea;
+  border: 1px solid var(--border);
+
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .secondary-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
-/* ================= RISK CARD ================= */
+/* =========================================================
+   HERO RISK CARD
+   ========================================================= */
 
 .hero-card {
-  padding: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.07),
-    rgba(255, 255, 255, 0.025)
-  );
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(15px);
+  padding: 30px;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background: var(--bg-secondary);
+
+  box-shadow:
+    0 20px 60px rgb(15 23 42 / 8%);
+
+  animation: floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
   padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: #cbd3df;
+
+  border-bottom: 1px solid var(--border);
+
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .status {
-  color: #52d6ad;
-  font-size: 11px;
+  color: #16a34a;
+
+  font-size: 12px;
 }
 
 .risk-score {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 30px 0 20px;
+
+  padding: 28px 0;
 }
 
 .score {
-  width: 105px;
-  height: 105px;
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 34px;
+
+  background: #fef3c7;
+  color: #b45309;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+
+  font-size: 32px;
   font-weight: 800;
-  color: #ffbd6d;
-  border: 7px solid rgba(255, 189, 109, 0.2);
-  border-top-color: #ffbd6d;
-  border-right-color: #ffbd6d;
+}
+
+.dark .score {
+  background: #422006;
+  color: #fbbf24;
 }
 
 .risk-score p {
-  color: #dce2eb;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .risk-score small {
-  color: #8d99ab;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
 .risk-bar {
-  height: 7px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 10px;
+  height: 10px;
+
   overflow: hidden;
-  margin-bottom: 25px;
+
+  border-radius: 999px;
+
+  background: var(--bg-tertiary);
 }
 
 .risk-bar div {
   width: 78%;
   height: 100%;
-  background: linear-gradient(90deg, #65d9c7, #ffbd6d);
+
   border-radius: inherit;
+
+  background: #f59e0b;
 }
 
 .risk-items {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  margin-top: 24px;
 }
 
-.risk-items div {
+.risk-items > div {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 13px 14px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.035);
-  font-size: 13px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid var(--border);
 }
 
 .risk-items span {
-  color: #909bad;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 
 .risk-items b {
-  color: #dce3ed;
-  font-weight: 600;
+  font-size: 13px;
 }
 
-/* ================= FEATURES ================= */
+/* =========================================================
+   COMMON SECTIONS
+   ========================================================= */
 
+.dashboard-section,
+.projects-section,
 .features-section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 110px 6% 120px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: min(1200px, 88%);
+  margin: 0 auto;
+
+  padding: 90px 0;
 }
 
 .section-label {
-  color: #6d8cff;
+  margin: 0 0 10px;
+
+  color: var(--accent);
+
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
 }
 
+.dashboard-section h2,
+.projects-section h2,
 .features-section h2 {
-  max-width: 650px;
-  font-size: 40px;
-  line-height: 1.15;
-  letter-spacing: -1.5px;
-  margin-bottom: 50px;
+  margin: 0 0 36px;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
 }
+
+/* =========================================================
+   DASHBOARD CARDS
+   ========================================================= */
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.dashboard-card {
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  background: var(--bg-secondary);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 16px 40px rgb(15 23 42 / 8%);
+}
+
+.dashboard-card span {
+  color: var(--text-muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dashboard-card strong {
+  font-family: "Plus Jakarta Sans", sans-serif;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+.empty-projects {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
 
 .features {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+
+  gap: 22px;
 }
 
 .feature-card {
-  padding: 28px;
-  min-height: 220px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.025);
-  transition: 0.25s ease;
+  padding: 30px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--bg-secondary);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(109, 140, 255, 0.35);
-  background: rgba(109, 140, 255, 0.045);
+  transform: translateY(-6px);
+  border-color: var(--accent);
 }
 
 .feature-icon {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 24px;
-  border-radius: 10px;
-  color: #8ea4ff;
-  background: rgba(109, 140, 255, 0.1);
-  font-size: 20px;
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  background: rgb(37 99 235 / 10%);
+  color: var(--accent);
+
+  font-size: 22px;
 }
 
 .feature-card h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
+  margin: 0 0 10px;
+
+  font-size: 19px;
+  font-weight: 800;
 }
 
 .feature-card p {
-  color: #8792a4;
-  font-size: 14px;
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
   line-height: 1.7;
 }
 
-/* ================= RESPONSIVE ================= */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-@media (max-width: 900px) {
-  .navbar {
-    padding: 0 5%;
-  }
-
+@media (max-width: 1000px) {
   .hero-section {
     grid-template-columns: 1fr;
+
     gap: 50px;
-    padding-top: 70px;
   }
 
   .hero-content {
-    max-width: 700px;
+    max-width: 100%;
   }
 
-  .hero-card {
-    max-width: 600px;
+  .dashboard-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .features {
@@ -374,60 +534,59 @@ button {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .navbar {
-    height: auto;
-    min-height: 65px;
-    padding: 15px 5%;
-    gap: 15px;
+    height: 68px;
+    padding: 0 5%;
   }
 
-  .navbar nav {
+  .navbar nav,
+  .nav-btn {
     display: none;
   }
 
-  .nav-btn {
-    padding: 8px 13px;
-    font-size: 13px;
-  }
-
   .hero-section {
-    padding: 65px 5% 70px;
+    width: 90%;
+    padding: 60px 0;
   }
 
   .hero-content h1 {
-    font-size: 48px;
-    letter-spacing: -2.5px;
+    font-size: 46px;
   }
 
   .hero-text {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .hero-buttons {
     flex-direction: column;
   }
 
-  .primary-btn,
-  .secondary-btn {
+  .hero-buttons button {
     width: 100%;
   }
 
-  .hero-card {
-    padding: 20px;
-  }
-
-  .score {
-    width: 85px;
-    height: 85px;
-    font-size: 27px;
-  }
-
+  .dashboard-section,
+  .projects-section,
   .features-section {
-    padding: 80px 5%;
+    width: 90%;
+    padding: 60px 0;
   }
 
-  .features-section h2 {
-    font-size: 32px;
+  .dashboard-cards,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    min-height: 130px;
+  }
+
+  .dashboard-card strong {
+    font-size: 26px;
+  }
+
+  .hero-card {
+    padding: 22px;
   }
 }

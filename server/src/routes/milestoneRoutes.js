@@ -13,7 +13,7 @@ router.post("/", createMilestone);
 
 router.get("/project/:projectId", getProjectMilestones);
 
-router.get("/timeline-risk/:projectId", analyzeTimeline);
+router.get("/timeline/:projectId", analyzeTimeline);
 
 router.put("/:id", updateMilestone);
 

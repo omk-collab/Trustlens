@@ -1,6 +1,7 @@
 const Project = require("../models/Project");
 const { reconcileProjectFunds } = require("./fundReconciliation");
 const { analyzeProjectTimeline } = require("./progressRisk");
+const Evidence = require("../models/Evidence");
 
 const getRiskLevel = (score) => {
   if (score <= 30) {
@@ -27,11 +28,13 @@ const calculateFinancialRisk = async (projectId) => {
 
   const reconciliation = await reconcileProjectFunds(projectId);
   const timeline = await analyzeProjectTimeline(projectId);
+  const evidence = await Evidence.find({ projectId });
 
-  let financialScore = 0;
-  let timelineScore = 0;
+let financialScore = 0;
+let timelineScore = 0;
+let evidenceScore = 0;
 
-  const factors = [];
+const factors = [];
 
   if (reconciliation.difference !== 0) {
     financialScore = 30;
@@ -43,7 +46,11 @@ const calculateFinancialRisk = async (projectId) => {
     factors.push("TIMELINE_DELAY");
   }
 
-  const totalScore = financialScore + timelineScore;
+  if (evidence.length === 0) {
+    evidenceScore = 20;
+    factors.push("EVIDENCE_GAP");
+  }
+const totalScore = financialScore + timelineScore + evidenceScore;
   const riskLevel = getRiskLevel(totalScore);
 
   return {
@@ -60,6 +67,11 @@ const calculateFinancialRisk = async (projectId) => {
     timeline: {
       score: timelineScore,
       ...timeline,
+    },
+    evidence: {
+      score: evidenceScore,
+      totalEvidence: evidence.length,
+      verifiedEvidence: evidence.filter((item) => item.verified).length,
     },
   };
 };

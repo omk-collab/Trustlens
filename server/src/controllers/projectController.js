@@ -112,10 +112,55 @@ const deleteProject = async (req, res) => {
   }
 };
 
+const getDashboardSummary = async (req, res) => {
+  try {
+    const projects = await Project.find();
+
+    const totalProjects = projects.length;
+
+    const totalSanctionedAmount = projects.reduce(
+      (total, project) => total + project.financial.sanctionedAmount,
+      0,
+    );
+
+    const totalSpentAmount = projects.reduce(
+      (total, project) => total + project.financial.spentAmount,
+      0,
+    );
+
+    const totalRiskScore = projects.reduce(
+      (total, project) => total + project.risk.score,
+      0,
+    );
+
+    const averageRiskScore =
+      totalProjects > 0
+        ? Number((totalRiskScore / totalProjects).toFixed(2))
+        : 0;
+
+    res.status(200).json({
+      success: true,
+      data: {
+        totalProjects,
+        totalSanctionedAmount,
+        totalSpentAmount,
+        averageRiskScore,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch dashboard summary",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createProject,
   getProjects,
   getProjectById,
   updateProject,
   deleteProject,
+  getDashboardSummary,
 };
